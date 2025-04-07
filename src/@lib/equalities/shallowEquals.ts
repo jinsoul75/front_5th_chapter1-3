@@ -1,8 +1,4 @@
-// 인덱스 시그니처 타입 오류로 Record 유틸리티 타입 사용
-export function shallowEquals(
-  objA: Record<string, unknown>,
-  objB: Record<string, unknown>,
-): boolean {
+export function shallowEquals<T>(objA: T, objB: T): boolean {
   // 1. 두 값이 정확히 같은지 확인 (참조가 같은 경우)
   if (objA === objB) return true;
 
@@ -23,7 +19,11 @@ export function shallowEquals(
 
   // 4. 모든 키에 대해 얕은 비교 수행
   for (const key of keysA) {
-    if (objA[key] !== objB[key]) return false;
+    if (
+      (objA as Record<string, unknown>)[key] !==
+      (objB as Record<string, unknown>)[key]
+    )
+      return false;
   }
 
   return true;
