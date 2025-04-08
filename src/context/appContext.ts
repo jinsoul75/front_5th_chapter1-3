@@ -1,11 +1,9 @@
 import { createContext } from "react";
 import {
-  AppContextType,
   ThemeContextType,
   UserContextType,
+  NotificationContextType,
 } from "../types/types";
-
-export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(
   undefined,
@@ -14,3 +12,7 @@ export const ThemeContext = createContext<ThemeContextType | undefined>(
 export const UserContext = createContext<UserContextType | undefined>(
   undefined,
 );
+
+export const NotificationContext = createContext<
+  NotificationContextType | undefined
+>(undefined);

@@ -6,14 +6,18 @@ import {
   ComplexForm,
   NotificationSystem,
 } from "./components";
-import { User, Notification, AppContextType, Theme } from "./types/types";
-import { AppContext, ThemeContext, UserContext } from "./context/appContext";
+import { User, Notification, Theme } from "./types/types";
+import {
+  NotificationContext,
+  ThemeContext,
+  UserContext,
+} from "./context/appContext";
 import { useMemo } from "./@lib";
 
 // 메인 App 컴포넌트
 const App: React.FC = () => {
   const [theme, setTheme] = useState<Theme>("light");
-  const [items, setItems] = useState(generateItems(1000));
+  const [items, setItems] = useState(() => generateItems(1000));
   const [user, setUser] = useState<User | null>(null);
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
@@ -58,18 +62,6 @@ const App: React.FC = () => {
     );
   }, []);
 
-  const contextValue: AppContextType = useMemo(
-    () => ({
-      user,
-      login,
-      logout,
-      notifications,
-      addNotification,
-      removeNotification,
-    }),
-    [user, login, logout, notifications, addNotification, removeNotification],
-  );
-
   const themeValue = useMemo(
     () => ({ theme, toggleTheme }),
     [theme, toggleTheme],
@@ -80,10 +72,15 @@ const App: React.FC = () => {
     [user, login, logout],
   );
 
+  const notificationValue = useMemo(
+    () => ({ notifications, addNotification, removeNotification }),
+    [notifications, addNotification, removeNotification],
+  );
+
   return (
     <ThemeContext.Provider value={themeValue}>
-      <AppContext.Provider value={contextValue}>
-        <UserContext.Provider value={userValue}>
+      <UserContext.Provider value={userValue}>
+        <NotificationContext.Provider value={notificationValue}>
           <div
             className={`min-h-screen ${theme === "light" ? "bg-gray-100" : "bg-gray-900 text-white"}`}
           >
@@ -100,8 +97,8 @@ const App: React.FC = () => {
             </div>
             <NotificationSystem />
           </div>
-        </UserContext.Provider>
-      </AppContext.Provider>
+        </NotificationContext.Provider>
+      </UserContext.Provider>
     </ThemeContext.Provider>
   );
 };
