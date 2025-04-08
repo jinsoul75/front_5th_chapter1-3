@@ -18,9 +18,6 @@ export interface Notification {
 }
 
 export interface AppContextType {
-  user: User | null;
-  login: (email: string, password: string) => void;
-  logout: () => void;
   notifications: Notification[];
   addNotification: (message: string, type: Notification["type"]) => void;
   removeNotification: (id: number) => void;
@@ -31,4 +28,10 @@ export type Theme = "light" | "dark";
 export type ThemeContextType = {
   theme: Theme;
   toggleTheme: () => void;
+};
+
+export type UserContextType = {
+  user: User | null;
+  login: (email: string, password: string) => void;
+  logout: () => void;
 };

@@ -1,10 +1,10 @@
-import { useAppContext, useThemeContext } from "../hooks/useContext";
+import { useUserContext, useThemeContext } from "../hooks/useContext";
 import { renderLog } from "../utils";
 import { memo } from "../@lib";
 
 export const Header: React.FC = memo(() => {
   renderLog("Header rendered");
-  const { user, login, logout } = useAppContext();
+  const { user, login, logout } = useUserContext();
   const { theme, toggleTheme } = useThemeContext();
 
   const handleLogin = () => {
