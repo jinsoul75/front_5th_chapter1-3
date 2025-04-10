@@ -1,4 +1,4 @@
-import { useUserContext, useThemeContext } from "../hooks/useContext";
+import { useUserContext, useThemeContext } from "../hooks";
 import { renderLog } from "../utils";
 import { memo } from "../@lib";
 

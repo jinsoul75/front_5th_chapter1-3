@@ -7,11 +7,7 @@ import {
   NotificationSystem,
 } from "./components";
 import { User, Notification, Theme } from "./types/types";
-import {
-  NotificationContext,
-  ThemeContext,
-  UserContext,
-} from "./context/appContext";
+import { NotificationContext, ThemeContext, UserContext } from "./context";
 import { useMemo } from "./@lib";
 
 // 메인 App 컴포넌트

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { renderLog } from "../utils";
-import { useThemeContext } from "../hooks/useContext";
+import { useThemeContext } from "../hooks";
 import { Item } from "../types/types";
 import { memo } from "../@lib";
 

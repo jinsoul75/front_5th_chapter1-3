@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNotificationContext } from "../hooks/useContext";
+import { useNotificationContext } from "../hooks";
 import { renderLog } from "../utils";
 import { memo } from "../@lib";
 
